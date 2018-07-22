@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+
+# This file makes two example files, using a parameter filename.  One
+# of the files is added to the git repo, the other one is not added.
+# Not very useful, but can be handy to quickly test some of your
+# scripts.
+#
+# use it like this
+# ./setup_files test
+#
+# That should create files added_test.txt and not_added_test.txt
+
+# $1 is a variable that represents the first argument, which should be
+# a filename.
+
+echo "I am a file added to git!" > added_$1.txt
+echo "I am a file not added to git!" > not_added_$1.txt
+git add added_$1.txt

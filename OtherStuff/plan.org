@@ -1,0 +1,60 @@
+* Ideas from Carl
+
+1. This one is super advanced - Create a script which, given two branches with disconnected history, makes a single history of rewritten versions of those commits interleaved as though they happened all on the same branch, preserving committer/author/date information (first version: assumes no commits touch the same file paths and history is linear - for bonus points, recreate merges and divergent history as well!)
+
+2. Find the 10 largest blobs in a history, and print all the file paths they have lived at
+
+3. Remove a list of file paths from history, even if it doesn't exist in the current revision (git filter-branch + a lot of magic can do it)
+
+4. Write a git pre-receive hook which prevents someone from committing a list of banned words
+
+5. Write a git commit hook which adds the hostname or some other string to the end of every commit message
+
+6. recover a file that exists only in a commit which no branch points to anymore (but which hasn't been GC'd yet)
+
+* Thoughts for "problem" git states
+
++ want to keep current commit but remove all history
+
+* Introduction
+** Assignment - get ruby script running with rugged, do simple dot assignment (maybe create a cycle of arbitrary size)
+** Reading
+* Internals 1: Trees and Blobs
+** Assignment - make diagrams of trees and branches
+* Internals 2: Commits and refs
+
+** Assignment - augment diagram with commits and branches
+** Alternative - invest history - take a bunch of trees
+and make a commit history of them.
+* Maybe something with recovering history
+Undangle all - find all dangling commits and make refs for them
+
+* staging/index/working directory
+** Assignment - step by step lab scenario - maybe pushing a change to multiple branches
+Perhaps followed by a quiz?
+Using reset, checkout, stash
+Maybe also fetch
+** Assigment: maybe something that automatically saves on a WIP branch
+i.e. you develop on a normal branch, but this sucker periodically switches your universe to a 
+special WIP branch, adds a commit, then switches you back to your old universe
+* Merging
+** Assignment - computing commits ahead/behind
+** Assignment - auto merge except
+comment out undesirable versions
+OR auto merge except make backup files of other versions
+thought - make the script execute the merge
+** Other ideas
+ or just draw the merge tree
+ determine two branches' common ancestor - or commits ahead/behind
+* Cherry picking?
+* Rebasing
+** Assignment - render rebase - commits with common commits having lines between them
+* Rewriting history, squashing
+
+* Reflog
+** Assignment, adding dead branches to the diagram
+* Strategies for branching and merging
+* Dotfiles
+** Git config
+* Git blame, bisect
+

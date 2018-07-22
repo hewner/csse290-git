@@ -1,0 +1,127 @@
+#+TITLE: Rebase Verbosely
+#+AUTHOR: Buffalo, Rose-Hulman Institute of Technology
+#+EMAIL: hewner@rose-hulman.edu
+#+OPTIONS: ^:{}
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:f tex:t
+
+* Step 1: Reading
+
+Read sections 3.7 (Rebasing) 
+
+: git rebase
+
+Note we'll talk about "git rebase --interactive" in the next class.
+
+
+* Step 2: Verbosely Rebase
+
+So as you know, rebase reapplies commits over a new base commit.  So if I'm
+in a particular state:
+
+#+BEGIN_EXAMPLE
+~/git/js-parsons % git checkout 939a576
+<< maybe some errors about a detached head state here>>
+
+~/git/js-parsons % git log --oneline | head -10
+939a576 Fix output comparison in variablechecking
+c72f4a5 Updated Skulpt; new option to turtle grader
+8d9663f Merge pull request #21 from vkaravir/vartest-feedback-fix
+8a1586c Merge pull request #20 from vkaravir/logging-fixes
+d2e3233 Make toggle separator configurable
+ce0b906 Fix coloring of variable values in variable checker feedback
+283bb73 Fixes to logged data.
+bebf70e Minor fixes to pseudocode, python variable handling, and executable code handling
+3a17c6e Merge pull request #19 from vkaravir/turtlet-grader
+b1b6576 Merge pull request #18 from vkaravir/python-exec-merge
+#+END_EXAMPLE 
+
+And then I execute a rebase, you'll see that the messages are the same
+(except for the stuff in the newly added base) but the commit SHAs are
+different.
+
+#+BEGIN_EXAMPLE
+~/git/js-parsons % git rebase 7e64813                                              
+First, rewinding head to replay your work on top of it...
+Applying: Fixes to logged data.
+Applying: Fix coloring of variable values in variable checker feedback
+Applying: Make toggle separator configurable
+Applying: Updated Skulpt; new option to turtle grader
+Applying: Fix output comparison in variablechecking
+
+~/git/js-parsons % git log --oneline | head -10
+4df2969 Fix output comparison in variablechecking
+3179e44 Updated Skulpt; new option to turtle grader
+0b2d1b7 Make toggle separator configurable
+e467ba1 Fix coloring of variable values in variable checker feedback
+90e56b6 Fixes to logged data.
+7e64813 Minor css fixes to prevent misbehaving in some environments
+bebf70e Minor fixes to pseudocode, python variable handling, and executable code handling
+3a17c6e Merge pull request #19 from vkaravir/turtlet-grader
+b1b6576 Merge pull request #18 from vkaravir/python-exec-merge
+0c26a0f Merge pull request #17 from vkaravir/pseudo-toggle-fix
+#+END_EXAMPLE
+
+What I want is to have my rebase command let me know what the commits are changing from and to.  Then it will print out:
+
+: OLD_SHA becomes NEW_SHA: DESCRIPTION
+
+For each commit that is changed.
+
+When it finds the new base of the changed system, it will print
+
+: BASE_SHA is the new base: DESCRIPTION
+
+then it will exit. 
+
+For example:
+
+#+BEGIN_EXAMPLE
+~/git/js-parsons % git checkout 939a576
+HEAD is now at 939a576... Fix output comparison in variablechecking
+
+~/git/js-parsons % rebase-verbosely.rb -b 7e64813
+git rebase 7e64813
+First, rewinding head to replay your work on top of it...
+Applying: Fixes to logged data.
+Applying: Fix coloring of variable values in variable checker feedback
+Applying: Make toggle separator configurable
+Applying: Updated Skulpt; new option to turtle grader
+Applying: Fix output comparison in variablechecking
+939a576 becomes d2bfeb9: Fix output comparison in variablechecking
+c72f4a5 becomes f9b9a5f: Updated Skulpt; new option to turtle grader
+d2e3233 becomes 4d79fb1: Make toggle separator configurable
+ce0b906 becomes 173a726: Fix coloring of variable values in variable checker feedback
+283bb73 becomes b4ae363: Fixes to logged data.
+7e64813 is the new base: Minor css fixes to prevent misbehaving in some environments
+
+~/git/js-parsons %
+#+END_EXAMPLE
+
+The command only takes one parameter (-b), which is the branch or
+commit SHA you'd like to rebase to.
+
+The way you'll accomplish this is to save the output of
+
+: git log --oneline
+
+Then execute it again once the commit is finished.  Use the
+descriptions of the commits to match up the new history.  Note that
+sometimes commits will be omitted from the rebase (if identical
+commits were already applied to the branch you're rebasing onto) so
+you can't rely on the order alone.
+
+You can assume that the rebase goes perfectly with no conflicts.
+
+If you'd like some code to start with, look here:
+
+[file:rebase-verbosely.rb]
+
+* Step 3: Turn-in
+
+You will turn in via Moodle.  Turn in the code and the output of
+running this on js-parsons:
+
+: git checkout 179be36     
+: rebase-verbosely.rb -b ee6db14

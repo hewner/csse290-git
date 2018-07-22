@@ -1,0 +1,42 @@
+* Introduction
+** Assignment - get ruby script running with rugged, do simple dot assignment (maybe create a cycle of arbitrary size)
+** Reading
+* Internals 1: Trees and Blobs
+** Assignment - make diagrams of trees and branches
+* Internals 2: Commits and refs
+
+** Assignment - augment diagram with commits and branches
+** Alternative - invest history - take a bunch of trees
+and make a commit history of them.
+* Maybe something with recovering history
+Undangle all - find all dangling commits and make refs for them
+
+* staging/index/working directory
+** Assignment - step by step lab scenario - maybe pushing a change to multiple branches
+Perhaps followed by a quiz?
+Using reset, checkout, stash
+Maybe also fetch
+** Assigment: maybe something that automatically saves on a WIP branch
+i.e. you develop on a normal branch, but this sucker periodically switches your universe to a 
+special WIP branch, adds a commit, then switches you back to your old universe
+** backup one step
+  branch - one prev
+  -- commited -> staged
+  -- staged - untstaged
+  unstaged - stashed
+  
+* Merging
+** Assignment - computing commits ahead/behind
+** Other ideas
+ or just draw the merge tree
+ determine two branches' common ancestor - or commits ahead/behind
+** Cherry picking?
+* Rebasing
+** Assignment - render rebase - commits with common commits having lines between them
+* Rewriting history, squashing
+
+* Reflog
+** Assignment, adding dead branches to the diagram
+* Strategies for branching and merging
+* Git blame, bisect
+

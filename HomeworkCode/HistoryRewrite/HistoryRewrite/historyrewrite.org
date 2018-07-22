@@ -1,0 +1,51 @@
+#+TITLE: History Rewriting
+#+AUTHOR: Buffalo, Rose-Hulman Institute of Technology
+#+EMAIL: hewner@rose-hulman.edu
+#+OPTIONS: ^:{}
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:f tex:t
+
+* Step 1: Reading
+
+Read section 7.6 of the Git Pro book.
+
+* Step 2: Try an interactive rebase
+
+In the js-parsons repo, first reset any crazyness you've done:
+
+: git checkout deeffdf
+
+Here's the first couple commits:
+
+#+BEGIN_EXAMPLE
+deeffdf Load jQueryUI touch punch and local jQ and jQUI in all examples
+f71110c Add option and example to disable indentation
+c9950b1 Clear feedback when changing toggles (#23)
+1e6b793 Merge branch 'master' of github.com:vkaravir/js-parsons
+7e64813 Minor css fixes to prevent misbehaving in some environments
+939a576 Fix output comparison in variablechecking
+c72f4a5 Updated Skulpt; new option to turtle grader
+8d9663f Merge pull request #21 from vkaravir/vartest-feedback-fix
+8a1586c Merge pull request #20 from vkaravir/logging-fixes
+d2e3233 Make toggle separator configurable
+ce0b906 Fix coloring of variable values in variable checker feedback
+#+END_EXAMPLE
+
+What to do:
+
+1.  Reorder deeffdf and f71110c
+2.  c72f4a5 modifies 3 files.  Change it into 3 commits that modify
+    one file.
+3.  Change the commit message of 939a576 to "Buffalo is cool"
+4.  Merge d2e3233 and ce0b906 into 1 commit (also squash 283bb73 which will appear between them in the rebase) 
+
+* Step 3
+
+Write a command - its a one line - that would let you add the file
+"/tmp/addme.txt" to every commit in the master branch.
+
+* Step 4
+
+Just provide the output of "git log --oneline | head -10" and your
+oneliner in the moodle commit.

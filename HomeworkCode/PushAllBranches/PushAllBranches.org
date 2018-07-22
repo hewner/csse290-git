@@ -1,0 +1,86 @@
+#+TITLE: Push All Branches
+#+AUTHOR: Buffalo, Rose-Hulman Institute of Technology
+#+EMAIL: hewner@rose-hulman.edu
+#+OPTIONS: ^:{}
+#+OPTIONS: html-link-use-abs-url:nil html-postamble:auto
+#+OPTIONS: html-preamble:t html-scripts:t html-style:t
+#+OPTIONS: html5-fancy:f tex:t
+
+* Step 1: Reading
+
+Read Ch 3.5
+
+* Step 2: Getting a test environment set up
+
+So this is about copying branches between repos.  For that to work,
+you need 2 repos you can easily write to that are clones of each
+other.
+
+Luckly, you can clone repos on your local filesystem just like you
+clone a repo on a remote server.  To start, pick some repo that has a
+bunch of branches.
+
+
+#+BEGIN_EXAMPLE
+
+~/git/testrepo % git branch
+ * master
+   otherbranch
+   testmerge
+~/git/testrepo % cd /tmp
+/tmp % git clone ~/git/testrepo
+Cloning into 'testrepo'...
+done.
+/tmp % cd testrepo
+/tmp/testrepo % git branch
+ * master
+#+END_EXAMPLE
+
+As you can see, when you clone it will only clone the master branch.
+
+* Step 3: Push all branches
+
+So the design of this command is to detect all the branches on local
+repo that are not on the remote repo, and create corresponding branches
+on that remote.  Branches are "corresponding" in the case if they have
+the same name.
+
+Your script should take one parameter -- the repo to push to -- and it
+should create any branch on that repo that exists on yours that
+doesn't exist on that repo.  The SHA of the created branch should
+match whatever is in your repo.  Use the push command to do this -
+don't cd into the other repo and run it like it's local.  That will
+work in the test environment but it wouldn't work if the actual repo
+was a GitHub repo or whatever.
+
+Branches that already exist in both repos have should not be modified.
+Don't worry about it if the remote branch has branches you don't have
+-- the goal here is to create all your branches on the remote, not
+keep both in sync.
+
+#+BEGIN_SRC
+~/git/testrepo % push-all-branches.rb --remote /tmp/testrepo
+Total 0 (delta 0), reused 0 (delta 0)
+To /tmp/testrepo
+ * [new branch]      otherbranch -> otherbranch
+Total 0 (delta 0), reused 0 (delta 0)
+To /tmp/testrepo
+ * [new branch]      testmerge -> testmerge
+~/git/testrepo % cd /tmp/testrepo
+/tmp/testrepo % git branch
+ * master
+   otherbranch
+   testmerge
+#+END_SRC
+
+Hint: to figure out which branches are on a remote branch, use
+
+: git ls-remote --heads
+
+If you'd like some code to start with, look here:
+
+[file:push-all-branches.rb]
+
+* Step 4: Turn-in
+
+In this case you'll just submit the code via Moodle.
