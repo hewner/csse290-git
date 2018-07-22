@@ -5,7 +5,7 @@
 
 ## Course Policies
 
-[ClassPolicies.md](/ClassPolicies)
+[ClassPolicies.md](ClassPolicies.md)
 
 
 
