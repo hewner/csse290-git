@@ -68,8 +68,6 @@ Next time: solution using commits.
 
 [Look here](Homework/Plumbing1/Plumbing1.md)
 
-
-
 # Day 2
 
 
