@@ -1,3 +1,6 @@
+---
+layout: github
+---
 #+TITLE: Plumbing 1: grep-tree-contents
 #+AUTHOR: Buffalo, Rose-Hulman Institute of Technology
 #+EMAIL: hewner@rose-hulman.edu
