@@ -66,7 +66,7 @@ Next time: solution using commits.
 
 ## Plumbing 1 Assignment
 
-[Look here](Homework/Plumbing1/)
+[Look here](Homework/Plumbing1/README.md)
 
 # Day 2
 

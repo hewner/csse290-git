@@ -50,8 +50,8 @@ sub-tree, it will recursively grep the subtree as well.
         // codeline in the student's code for the LIS computation and, for example,
        // For example, the first line may not be indented.
 
-I've provided (an example script in ruby that gives you a
-start)[grep-tree-contents.rb].
+I've provided [an example script in ruby that gives you a
+start](grep-tree-contents.rb).
 
 But, if you prefer feel free to use any scripting language you are
 comfortable with.
