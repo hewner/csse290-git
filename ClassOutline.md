@@ -218,7 +218,7 @@ From the explaination of git fetch:
 
 ## Plumbing 2 Assignment
 
-[<HomeworkCode/Plumbing2/Plumbing2.md>]
+Go [here](Homework/Plumbing2/README.md).
 
 
 
