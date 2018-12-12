@@ -212,7 +212,9 @@ And then things get even more interesting
 
 From the explaination of git fetch:
 
-"Fetch branches and/or tags (collectively, "refs") from one or more other repositories, along with the objects necessary to complete their histories. Remote-tracking branches are updated."
+"Fetch branches and/or tags (collectively, "refs") from one or more
+other repositories, along with the objects necessary to complete their
+histories. Remote-tracking branches are updated."
 
 
 
@@ -282,9 +284,9 @@ To check for unconnected stuff
 
 ### Step 4: Reconnect it to the ref tree
 
-It it's a commit we can reconnect it
+If it's a commit we can reconnect it
 
-    git branch recover-branch deeffdf
+    git branch recover-branch deeffdfg
 
 Or heck, use our cool update-ref command
 
