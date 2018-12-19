@@ -388,7 +388,7 @@ There are 3 "trees" we might be interested
 
 
 
-### git reset &#x2013;soft
+### git reset --soft
 
 Only modifies #1. Adjusts the branch to a new commit. But your local files don't change - so now they will appear like modifications.
 
@@ -398,7 +398,7 @@ Realize that this modifies the Branch! Not the same as checkout. If you push in 
 
 
 
-### git reset &#x2013;mixed (this is also the default)
+### git reset --mixed (this is also the default)
 
 Changes #1, like before.
 
@@ -408,7 +408,7 @@ Again, your files will not be modified, but they might seem modified because the
 
 
 
-### Easy case: git reset &#x2013;hard
+### Easy case: git reset --hard
 
 Destroys everything. Modifies 1 2 and 3, and forces them all to point to the same thing.
 
@@ -581,13 +581,53 @@ Only thing is to remember that they exist and which stash corresponds to what.
 
 ## Reset and Stash Assignment
 
-[<HomeworkCode/ResetAndStash/ResetAndStash.md>]
+Look [here](Homework/ResetAndStash/README.md).
 
 
 
 # Day 4: Merging
 
+## Aside: An alternative use of checkout
 
+Sometimes you want to set a particular file to a particular version
+from your history.  If you wanted to reset everything to a historical
+version, you'd use reset.  But if you want to keep 99% of your code
+modern, but switch one tiny part to the past, checkout can do that for
+you.
+
+    $ git checkout 6ac90a7d8 -- README.md
+    $ git status
+    On branch master
+    Your branch is up to date with 'origin/master'.
+    
+    Changes to be committed:
+      (use "git reset HEAD <file>..." to unstage)
+    
+            modified:   README.md
+
+This will replace your local file with the version from the specified
+revision.  It doesn't change your current branch at all.
+
+Note the -- in the command, that is often needed but it is sometimes
+optional.
+
+You can actually specify any number of files or directories.
+
+    git checkout 6ac90a7d8 -- README.md someCoolDir other.txt
+
+Note that if you omit the revision SHA, git will assume you mean HEAD so
+
+    git checkout README.md
+
+means "revert the changes I have made to this file"...very useful.  I
+really prefer using the "--" form though, because without it meaning
+can be very ambiguous.
+
+    git checkout ninja
+    
+Is this switching branches or reverting a file called ninja?
+Unfortunately, git loves to overload command names to do unrelated
+things like this frequently.
 
 ## A Simple example
 
@@ -624,8 +664,6 @@ Once you have successfully merged the files, you must mark you are happy with th
     git add file_I_just_merged.txt
 
 Once all conflicted files are merged, things can go through
-
-
 
 ## How merges work
 
@@ -720,7 +758,7 @@ Will create a merge branch that ignores the contents of the other merges. Usuall
 
 ## Assignment
 
-[<HomeworkCode/Merge/merge.md>]
+Look [here](Homework/Merge/README.md).
 
 
 
