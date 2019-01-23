@@ -615,7 +615,7 @@ You can actually specify any number of files or directories.
 
     git checkout 6ac90a7d8 -- README.md someCoolDir other.txt
 
-Note that if you omit the revision SHA, git will assume you mean HEAD so
+Note that if you omit the revision SHA, git will assume you mean INDEX so
 
     git checkout README.md
 
@@ -640,7 +640,7 @@ things like this frequently.
 The two branches both have changes to the same section of the same file.
 
     This file has several lines
-    <<<<<<< HEAD
+     <<<<<<< HEAD
     Here are some branchone changes
     =======
     Here's some branch2 changes
@@ -675,7 +675,10 @@ Instead, what git does is it computes the nearest common ancestor of the two mer
 
 ### Always test after merging
 
-Note that small changes in one part of a computer program can affect distant parts. Just because there no conflicts doesn't mean the result works. Also attempt to compile and run unit tests before committing a merge commit.
+Note that small changes in one part of a computer program can affect
+distant parts. Just because there no conflicts doesn't mean the result
+works. Also attempt to compile and run unit tests before committing a
+merge commit.
 
 
 
@@ -906,21 +909,52 @@ Let's go through the example from here:
 
 <https://git-scm.com/book/en/v2/Git-Branching-Rebasing>
 
+## handy short cuts
 
+    git pull
+    
+is actually just a shorthand for
+
+    git fetch origin
+    git merge origin/master (or actually whatever your upstream is)
+
+This is handy to know for a lot of reasons, one of which to remind you
+that a fetch is always safe (won't spontaneously make commits) while a
+merge could suddenly make your life complicated.
+
+But if you like you can also do
+
+    git pull -r
+    
+Which is
+
+    git fetch origin
+    git rebase origin/master
+    
+Although note that recovering from a broken rebase can be more
+annoying than recovering from a broken merge.  (Why?)
 
 ## Is rebasing rather than merging a good idea?
 
-Well, practically speaking, the actual business of creating software project is fairly messy. There is a large amount of out-of-order committing which will mean many small merges. As a result, looking at the history will be quite complicated.
+Well, practically speaking, the actual business of creating software
+project is fairly messy. There is a large amount of out-of-order
+committing which will mean many small merges. As a result, looking at
+the history will be quite complicated.
 
-This can be a real problem, as understanding what has happened can be real important part of source control. But a single conceptual "change" might be broken up among several commits with several merges.
+Imagine a 3 person team at the start of a sprint.  All of them check
+out the current state of the system, and all of them add a feature.
+Then they all commit.
 
-So is that real history important, or do we want to have a curated understandable history.
+What this means in practice is 2 different merge commits.  Which is in
+some sense what happened, but if you go and look at that history 3
+weeks later it will seem amazingly complex.
 
-In some places almost every "merge" is a rebase. These places tend to want to really have a beautiful understandable history (i.e. each commit represents a discrete understandable change). In other it's a very rare event.
+If on the other hand, we use rebase can see a simplified progression
+of this feature added, then this feature, then this one.  That's a lot
+easier to understand (even if it really isn't what actually happened).
 
 
-
-## Rebase &#x2013;onto
+## Rebase onto
 
 Rebase in general can be thought of as
 
@@ -932,9 +966,7 @@ Still in progress&#x2026;
 
 ## Homework
 
-[<HomeworkCode/RebaseVerbosely/RebaseVerbosely.md>]
-
-
+Look [here](Homework/RebaseVerbosely/RebaseVerbosely.org).
 
 ## Note
 
@@ -952,6 +984,15 @@ Images and some text of the text of this lecture are taken from:
 
     git commit --amend
 
+
+## Cherry Pick
+
+    git cherry-pick e4add8d
+
+Just pull one or more commits from other branches as commits into your history
+
+Git will sort of try and remember that they are there so a rebase
+(hopefully) won't duplicate them
 
 
 ## interactive rebase
@@ -980,35 +1021,31 @@ This one is pretty obvious from the help text
 
 ### editing commits
 
-Note that it will dump you out, after the edited commit. So if you want to change things you have to use commit &#x2013;amend.
+Note that it will dump you out, after the edited commit. So if you want to change things you have to use commit --amend.
 
 
 
 ### splitting a commit
 
-Say you want to do the opposite of squash &#x2013; you want to take a singular commit and split it into two separate commits. There's not direct command in interactive to do it, but you can easily use "edit" to do it by hand.
+Say you want to do the opposite of squash -- you want to take a singular commit and split it into two separate commits. There's not direct command in interactive to do it, but you can easily use "edit" to do it by hand.
 
-1.  
+1.  Take the commit you want to split and "edit" it in rebase interactive
 
-Take the commit you want to split and "edit" it in rebase interactive
+        edit 310154e updated README formatting and added blame
 
-    edit 310154e updated README formatting and added blame
+2.  It's going to start you after the commit, so you must undo the commit:
 
-1.  It's going to start you after the commit, so you must undo the commit:
+        git reset HEAD^
 
-    git reset HEAD^
+3. This will leave the change unstaged.
 
-This will leave the change unstaged.
+        git add <WHATEVER>
 
-    git add <WHATEVER>
+4. Add what you want to be in the first commit.
 
-Add what you want to be in the first commit.
+        git commit 
 
-    git commit 
-
-Then repeat the process for the others. When you're finished, do a git rebase &#x2013;continue
-
-
+Then repeat the process for the others. When you're finished, do a git rebase --continue
 
 ## filter-branch
 
@@ -1018,24 +1055,14 @@ Your nuclear option
 
 This is often what you need to do if a foolish person commits a large amount of binary files to your repo. But there are specialized tools for the particular case too.
 
-
-
 ## Warning: all of these things changes commit history
 
 Don't revise history that others may be using!
 
 
-
-## Cherry Pick
-
-    git cherry-pick e4add8d
-
-
-
 ## Homework
 
-[<HomeworkCode/HistoryRewrite/historyrewrite.md>]
-
+Look [here](Homework/HistoryRewrite/historyrewrite.org)
 
 
 # Day 7: Remotes and branches
