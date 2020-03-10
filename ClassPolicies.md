@@ -19,7 +19,7 @@ Pro Git, available freely online (though you can buy a physical copy if you wish
 
 # Late Policy
 
-All homeworks are due at 11:55PM on the TUESDAY before class.
+All homeworks are due at 11:55PM on the MONDAY before class.
 
 In general, you should plan ahead and submit assignments on time. This course has no 'late day' policy and late assignments are generally worth 0 points unless you have made special arrangements.
 
