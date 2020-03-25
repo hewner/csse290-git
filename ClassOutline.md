@@ -366,6 +366,10 @@ Not that in this state if you use reset you won't modify any branches if you use
     ~/git/testrepo % cat .git/HEAD
     ref: refs/heads/otherbranch
 
+Note there is a new experimental "git switch" command that will do
+similar things.  Hopefully we will use that someday - "git checkout"
+can do two very different things depending on how its called.
+
 But we can't modify the contents of the branch with checkout.
 
 We can modify it with commit, but that's obvious stuff.
@@ -481,7 +485,7 @@ What's the problem? It's that the files thirdCommit and forthCommit don't exist 
 
 ### Solution 1: Commit (and reset)
 
-If you want to keep the changes associated with the branch you're on, it may be safer to just commit (even if you are unready). Remember with "git reset &#x2013;soft" you can always get you back in the previous state (mostly).
+If you want to keep the changes associated with the branch you're on, it may be safer to just commit (even if you are unready). Remember with "git reset --soft" you can always get you back in the previous state (mostly).
 
 Example:
 
@@ -523,7 +527,7 @@ I make my cool quick fix. Then I switch back:
     
     no changes added to commit (use "git add" and/or "git commit -a")
 
-Viola! Back to where I was. Only downside, I've lost track of which changes were staged and which were unstaged. Because I used &#x2013;mixed all changes are unstaged - if I used &#x2013;soft, they all will be staged.
+Viola! Back to where I was. Only downside, I've lost track of which changes were staged and which were unstaged. Because I used --mixed all changes are unstaged - if I used --soft, they all will be staged.
 
 
 
