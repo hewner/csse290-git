@@ -2,6 +2,7 @@
 layout: github
 ---
 
+Note there is a command git grep that provides the feature I ask for here. Please do not use it and instead implement it yourself using the plumbing commands we discussed in class.
 
 # Step 1: Reading
 
