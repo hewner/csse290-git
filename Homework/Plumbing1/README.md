@@ -79,5 +79,4 @@ You will turn in via Moodle.  You must turn in 2 things:
 1.  The source code of your script
 2.  The a text file with the results of running the following search on js-parsons:
 
-    ../grep-tree-contents.rb -t 7d3b207 -s NOTE
-
+        ../grep-tree-contents.rb -t 7d3b207 -s NOTE
