@@ -11,7 +11,7 @@ the example.  I recommend you use a unix environment for this course -
 but something like cygwin that simlates unix on windows should
 probably work fine as well.
 
-You are responsible for memorizing the meaning/use of the folowing commands:
+You are responsible for memorizing the meaning/use of the following commands:
 
     git hash-object -w --stdin
     git cat-file -p

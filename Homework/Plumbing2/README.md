@@ -6,7 +6,7 @@ layout: github
 
 Read section 10.3 of the git book.
 
-You are responsible for memorizing the meaning/use of the folowing commands:
+You are responsible for memorizing the meaning/use of the following commands:
 
     git commit-tree
     git update-ref

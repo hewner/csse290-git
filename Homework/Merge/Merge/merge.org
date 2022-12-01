@@ -12,7 +12,7 @@ Read section 3.2 and 7.8.  Honestly, most of the commands you'll
 actually use in this code are from 3.2, but there's a lot of good
 stuff in 7.8.
 
-You are responsible for memorizing the meaning/use of the folowing commands:
+You are responsible for memorizing the meaning/use of the following commands:
 
 : git merge
 
