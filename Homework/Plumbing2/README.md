@@ -11,7 +11,7 @@ You are responsible for memorizing the meaning/use of the following commands:
     git commit-tree
     git update-ref
 
-# Step 3: Write the code
+# Step 2: Write the code
 
 Write a script called alternate-history.  This script will take a
 series of trees and an output branch name.  It will create a alternate
@@ -58,7 +58,7 @@ Here's an example of me using my solution
 If you like, I've provided a start [here](alternate-history.rb).
 
 
-# Step 4: Turn-in
+# Step 3: Turn-in
 
 You will turn in via Moodle.  You must turn in 2 things:
 
@@ -68,5 +68,5 @@ You will turn in via Moodle.  You must turn in 2 things:
     using git cat-file to dump all the commits (so I can see the trees
     are correct).  Use this command on js-parsons:
 
-    alternate-history.rb -t 4a218e805a4b -t cafd0d12 -t e6ab292b -o alternative-history-branch
+        alternate-history.rb -t 4a218e805a4b -t cafd0d12 -t e6ab292b -o alternative-history-branch
 
