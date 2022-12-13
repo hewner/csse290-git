@@ -68,5 +68,5 @@ You will turn in via Moodle.  You must turn in 2 things:
     using git cat-file to dump all the commits (so I can see the trees
     are correct).  Use this command on js-parsons:
 
-    alternate-history.rb -t 4a218e805a4b -t cafd0d12 -t e6ab292b -o alternative-history-branch
+        alternate-history.rb -t 4a218e805a4b -t cafd0d12 -t e6ab292b -o alternative-history-branch
 
